@@ -532,7 +532,7 @@ class CerebrasAI:
 # Example usage:
 if __name__ == "__main__":
     client = CerebrasAI("YOUR_API_KEY") # Enter Your own API KEY
-    playsound("./JARVIS/Welcome.mp3")
+    playsound("./Welcome.mp3")
     while True:
         question = input("You: ")
         if not question.strip():continue
