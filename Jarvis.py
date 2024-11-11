@@ -10,6 +10,7 @@ from playsound import playsound
 # from Tools.Vision import GroqVision
 from Tools.STT import SpeechToTextListener
 from Tools.DeepGram import DeepgramTTS
+from Tools.Elevenlabs import ElevenlabsTTS
 from mtranslate import translate
 from Tools.Alpaca_DS_Converser import ConversationHistoryManager
 history_manager = ConversationHistoryManager()
