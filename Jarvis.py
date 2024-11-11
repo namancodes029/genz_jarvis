@@ -3,6 +3,7 @@ import time
 import cv2
 import threading
 from dotenv import load_dotenv;load_dotenv()
+from Tools.Colors import *
 # from Tools.CerebrasChat import CerebrasAI
 from Tools.Phind import chat
 from playsound import playsound
@@ -86,6 +87,6 @@ if __name__ == "__main__":
                     history_manager.update_file(speech, response)
                     print("\033[92mJARVIS >> {}\033[0m".format(response))
                     DeepgramTTS(response)
-    except Exception as e:print(e)
+    except Exception as e:print(f"Jarvis RunTime Error: {bold_bright_red}{e}{reset}")
     finally:...
         # camera.stop()
