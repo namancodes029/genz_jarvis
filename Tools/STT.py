@@ -1,23 +1,15 @@
-"""
-Author: Devs Do Code (Sree)
-Project: Realtime Speech to Text Listener
-Description: A Python script that uses Selenium to interact with a website and listen to user input & print them in real time.
-"""
-
 from typing import Optional
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import os
 
 class SpeechToTextListener:
     """A class for performing speech-to-text using a web-based service."""
 
     def __init__(
             self, 
-            # website_path: str = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), r"assets\index.html"),
             website_path: str = "https://realtime-stt-devs-do-code.netlify.app/", 
             language: str = "hi-IN",
             wait_time: int = 10):

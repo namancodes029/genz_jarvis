@@ -1,6 +1,10 @@
+# Main Website Url: https://elevenlabs.io/?from=shyamsundar5735
+
+# Add this play_audio_and_detect_hotword function to play the output audio files in this function so let me tell you the process how they will work. firstly they will sending all the chunked text requests at the same time and leaving them to run in the background and when the output_audio_1 audio file saved sccessfully it will start playing the output file with the help of play_audio_and_detect_hotword in sequence like output_audio_1, output_audio_2, output_audio_3 and so on depending on the number of files with hotword detection as well
+
 import requests
-import base64
 import os
+import re
 import time
 import threading
 from Interrupted_Playsound import play_audios
@@ -72,7 +76,7 @@ def ElevenlabsTTS(text: str, voice: str = "Brian", filename: str = "STREAM_AUDIO
     playback_started = False
     for chunk_num, sentence in enumerate(sentences, start=1):
         if sentence.strip():
-            print(f"{chunk_num}* Chunk Text: {sentence.strip()}")
+            print(f"{chunk_num}* Chunk Text: {sentence.strip() + '.'}")
         if stop_event.is_set():  # Stop generation if hotword detected
             break
         generate_audio_sequentially(sentence.strip(), chunk_num)
@@ -93,4 +97,4 @@ def ElevenlabsTTS(text: str, voice: str = "Brian", filename: str = "STREAM_AUDIO
         playback_thread.join()  # Wait for playback to complete if no hotword detected
 
 if __name__ == "__main__":
-    ElevenlabsTTS("Thermodynamics deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of matter and radiation. The behavior of these quantities is governed by the four laws of thermodynamics, which convey a quantitative description using measurable macroscopic physical quantities, but may be explained in terms of microscopic constituents by statistical mechanics. Thermodynamics plays a role in a wide variety of topics in science and engineering. Historically, thermodynamics developed out of a desire to increase the efficiency of early steam engines, particularly through the work of French physicist Sadi Carnot.")
+    print(ElevenlabsTTS("Thermodynamics deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of matter and radiation. The behavior of these quantities is governed by the four laws of thermodynamics, which convey a quantitative description using measurable macroscopic physical quantities, but may be explained in terms of microscopic constituents by statistical mechanics. Thermodynamics plays a role in a wide variety of topics in science and engineering. Historically, thermodynamics developed out of a desire to increase the efficiency of early steam engines, particularly through the work of French physicist Sadi Carnot."))

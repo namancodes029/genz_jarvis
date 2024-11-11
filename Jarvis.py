@@ -3,14 +3,14 @@ import time
 import cv2
 import threading
 from dotenv import load_dotenv;load_dotenv()
-from Tools.CerebrasChat import CerebrasAI
+# from Tools.CerebrasChat import CerebrasAI
+from Tools.Phind import chat
 from playsound import playsound
-from Tools.Vision import GroqVision
+# from Tools.Vision import GroqVision
 from Tools.STT import SpeechToTextListener
-from Tools.TTS import DeepgramTTS
+from Tools.DeepGram import DeepgramTTS
 from mtranslate import translate
 from Tools.Alpaca_DS_Converser import ConversationHistoryManager
-
 history_manager = ConversationHistoryManager()
 
 class CameraVision:
@@ -57,17 +57,14 @@ if __name__ == "__main__":
     try:
         # camera = CameraVision()
         # camera.start()
-        print("\033[92mJARVIS >> Hello, Sir! Welcome back. How can I assist you today?\033[0m")
         listener = SpeechToTextListener(language="en-IN")  # Assuming this is defined elsewhere
-        api_key = os.getenv("CEREBRAS_API_KEY")
-        client = CerebrasAI(api_key)  # Assuming this is defined elsewhere
-        # playsound("Assets\Welcome.mp3")
+        print("\033[92mJARVIS >> Hello, Sir! Welcome back. How can I assist you today?\033[0m")
+        playsound("Assets\Welcome.mp3")
         while True:
             speech = listener.listen()  # Assuming this method blocks until speech is detected
             print("\033[93mNaman >> " + speech + "\033[0m")
-            if not speech.strip():
-                continue
-            if speech.lower().startswith("jarvis"):
+            if not speech.strip():continue
+            if "jarvis" in speech.lower():
                 try:speech = translate(speech, "en", "auto")
                 except:...
                 print("\033[92mTranslated Speech >> " + speech + "\033[0m")
@@ -83,11 +80,12 @@ if __name__ == "__main__":
                 else:
                     history_manager.store_history(history_manager.history + [{"role": "user", "content": speech}])
                     start = time.time()
-                    response = client.chat(history_manager.history)
+                    response = chat(history_manager.history, stream=False)
                     end = time.time()
                     print(f"\033[1;93m\nTime Taken: {end - start:.2f} Seconds")
                     history_manager.update_file(speech, response)
                     print("\033[92mJARVIS >> {}\033[0m".format(response))
                     DeepgramTTS(response)
+    except Exception as e:print(e)
     finally:...
         # camera.stop()

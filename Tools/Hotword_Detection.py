@@ -23,8 +23,8 @@ class HotwordDetector:
             Stops the hotword detection process.
     """
     def __init__(self, keywords: List[str] = ['picovoice', 'grasshopper', 'americano', 'hey siri', 'bumblebee', 'ok google', 'blueberry', 'jarvis', 'pico clock', 'terminator', 'computer', 'porcupine', 'grapefruit', 'hey google', 'alexa'], 
-                 activation_sound_path: Optional[str] = r"assets\activation_sound.wav",
-                 deactivation_sound_path: Optional[str] = None, # r"assets\deactivation_sound.wav",
+                 activation_sound_path: Optional[str] = r"Assets\activation_sound.wav",
+                 deactivation_sound_path: Optional[str] = None,
                  prints: bool = False) -> None:
         self.keywords = keywords
         self.activation_sound_path = activation_sound_path

@@ -2,7 +2,7 @@ import json
 import os
 
 class ConversationHistoryManager:
-    def __init__(self, conversation_file=r"assets\Conversation_history.json", history_offset=1000):
+    def __init__(self, conversation_file=r"assets\Conversation_history.json", history_offset=700):
         self.history_offset = history_offset
         self.conversation_file = conversation_file
         if os.path.exists(conversation_file):
