@@ -2,14 +2,14 @@ import os
 import time
 import cv2
 import threading
-from dotenv import load_dotenv;load_dotenv()
+# from dotenv import load_dotenv;load_dotenv()
 from Tools.Colors import *
 # from Tools.CerebrasChat import CerebrasAI
 from Tools.Phind import chat
 from playsound import playsound
 # from Tools.Vision import GroqVision
 from Tools.STT import SpeechToTextListener
-from Tools.DeepGram import DeepgramTTS
+# from Tools.DeepGram import DeepgramTTS
 from Tools.Elevenlabs import ElevenlabsTTS
 from mtranslate import translate
 from Tools.Alpaca_DS_Converser import ConversationHistoryManager
@@ -87,7 +87,7 @@ if __name__ == "__main__":
                     print(f"\033[1;93m\nTime Taken: {end - start:.2f} Seconds")
                     history_manager.update_file(speech, response)
                     print("\033[92mJARVIS >> {}\033[0m".format(response))
-                    DeepgramTTS(response)
+                    ElevenlabsTTS(response)
     except Exception as e:print(f"Jarvis RunTime Error: {bold_bright_red}{e}{reset}")
     finally:...
         # camera.stop()
